@@ -10,7 +10,7 @@ export default async function handleProfileSignup(
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
   ]).then((resp) =>
-    resp.map((resp_item) => ({
+    resp.map((respItem) => ({
       status: respItem.status,
       value:
         respItem.status === "fulfilled"
