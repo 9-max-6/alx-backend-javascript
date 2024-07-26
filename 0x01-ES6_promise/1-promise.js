@@ -6,7 +6,7 @@ export default function getResponseFromAPI(success) {
         body: 'Success',
       });
     } else {
-      reject('The fake API is not working currently');
+      reject(new Error('The fake API is not working currently'));
     }
-  }); // eslint-disable-line no-unused-vars
+  });
 }
