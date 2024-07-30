@@ -1,26 +1,27 @@
 /**
- * A weak map of API endpoints and the number of calls made.
+ * A weak map of endpoints and the number of calls made.
  */
-export const apiCallTracker = new WeakMap();
+export const weakMap = new WeakMap();
 
 /**
- * The maximum number of calls allowed for an API endpoint.
+ * The maximum number of calls for an endpoint.
  */
-const MAX_CALLS_ALLOWED = 5;
+const MAX_ENDPOINT_CALLS = 5;
 
 /**
  * Tracks the number of calls made to an API's endpoint.
  * @param {{
  *   protocol: String,
  *   name: String,
- * }} apiEndpoint - The endpoint to make a request to.
+ * }} endpoint - The endpoint to make a request to.
+ * @author Maxwell Mutuku <https://github.com/9-max-6>
  */
-export function trackApiCalls(apiEndpoint) {
-  if (!apiCallTracker.has(apiEndpoint)) {
-    apiCallTracker.set(apiEndpoint, 0);
+export function queryAPI(endpoint) {
+  if (!weakMap.has(endpoint)) {
+    weakMap.set(endpoint, 0);
   }
-  apiCallTracker.set(apiEndpoint, apiCallTracker.get(apiEndpoint) + 1);
-  if (apiCallTracker.get(apiEndpoint) >= MAX_CALLS_ALLOWED) {
+  weakMap.set(endpoint, weakMap.get(endpoint) + 1);
+  if (weakMap.get(endpoint) >= MAX_ENDPOINT_CALLS) {
     throw new Error("Endpoint load is high");
   }
 }
