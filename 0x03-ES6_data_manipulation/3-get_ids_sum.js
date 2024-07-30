@@ -1,1 +1,3 @@
-export default function getStudentIdsSum() {}
+export default function getStudentIdsSum(listStudents) {
+  return listStudents.reduce();
+}
