@@ -1,5 +1,5 @@
 export default function getListStudentIds(listOfStudentObjects) {
-  if (typeof listOfStudentObjects === Array) {
+  if (Array.isArray(listOfStudentObjects)) {
     const listIds = listOfStudentObjects.map((student) => student.id);
     return listIds;
   }
