@@ -45,3 +45,31 @@ export const createEmployee: createEmployeeInterface = function (salary) {
         return new Director();
     }
 }
+
+export interface isDirectorInterface {
+    (employee: Director | Teacher): void;
+}
+
+export interface executeWorkInterface {
+    (employee: Director | Teacher): void;
+}
+
+export const isDirector: isDirectorInterface = (employee: Director | Teacher) => {}
+
+export const executeWork: executeWorkInterface = (employee: Director | Teacher) => {
+    if (employee instanceof Director) {
+        employee.workDirectorTasks();
+    } else {
+        employee.workTeacherTasks();
+    }
+}
+
+type Subjects = "Math" | "History"
+
+export const teachClass = (todayClass: Subjects): string => {
+    if (todayClass === "Math") {
+        return "Teaching Math"
+    } else {
+        return "Teaching History"
+    }
+}
