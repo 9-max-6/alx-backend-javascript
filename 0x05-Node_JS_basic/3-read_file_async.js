@@ -1,18 +1,18 @@
-const fs = require("fs").promises;
+const fs = require('fs').promises;
 
 async function countStudents(path) {
   try {
-    const data = await fs.readFile(path, "utf8");
-    let lines = data.split("\n").filter((line) => line.trim() !== "");
+    const data = await fs.readFile(path, 'utf8');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
     lines.shift();
 
     if (lines.length === 0) {
-      throw new Error("No valid student data found in the file.");
+      throw new Error('No valid student data found in the file.');
     }
 
     const visited = [];
     lines.forEach((line) => {
-      const fields = line.split(",");
+      const fields = line.split(',');
       if (fields.length < 4) return;
       const subject = fields.at(-1).trim();
       if (!visited.includes(subject)) {
@@ -26,7 +26,7 @@ async function countStudents(path) {
       const thisSubject = [];
 
       lines.forEach((line) => {
-        const fields = line.split(",");
+        const fields = line.split(',');
         if (fields.length < 4) return;
         if (fields.at(-1).trim() === subject) {
           thisSubject.push(fields.at(0).trim());
@@ -36,11 +36,11 @@ async function countStudents(path) {
       console.log(
         `Number of students in ${subject}: ${
           thisSubject.length
-        }. List: ${thisSubject.join(", ")}`
+        }. List: ${thisSubject.join(', ')}`,
       );
     });
   } catch (err) {
-    throw new Error("Cannot load the database");
+    throw new Error('Cannot load the database');
   }
 }
 
