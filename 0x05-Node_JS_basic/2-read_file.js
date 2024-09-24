@@ -33,7 +33,7 @@ const countStudents = (dataPath) => {
   for (const [field, students] of Object.entries(studentsByField)) {
     const names = students.map((student) => student.firstname).join(', ');
     console.log(
-      `Number of students in ${field}: ${students.length}. List: ${names}`,
+      `Number of students in ${field}: ${students.length}. List: ${names}`
     );
   }
 };
