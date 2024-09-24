@@ -3,7 +3,7 @@ const http = require('http');
 const fs = require('fs');
 
 function getMessage(subjectName) {
-  const template = `Number of students in ${subjectName[0]}: ${subjectName[1].length}.`;
+  const template = `Number of students in ${subjectName[0]}: ${subjectName[1].length}. `;
   const studentNames = new Array();
 
   for (const index in subjectName[1]) {
