@@ -1,6 +1,3 @@
-const http = require('http');
-const pc = require('process');
-
 const fs = require('fs');
 
 const countStudents = (dataPath) =>
@@ -35,31 +32,9 @@ const countStudents = (dataPath) =>
         const totalStudents = Object.values(studentGroups).reduce(
           (pre, cur) => (pre || []).length + cur.length
         );
-        console.log(`Number of students: ${totalStudents}`);
-        for (const [field, group] of Object.entries(studentGroups)) {
-          const studentNames = group
-            .map((student) => student.firstname)
-            .join(', ');
-          console.log(
-            `Number of students in ${field}: ${group.length}. List: ${studentNames}`
-          );
-        }
-        resolve(true);
+        resolve(studentGroups);
       }
     });
   });
 
-const PORT = 1245;
-const HOST = '127.0.0.1';
-
-app = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  if (req.method === 'GET' && req.url === '/') {
-    res.end('Hello Holberton School!');
-  } else if (req.method === 'GET' && req.url === '/students') {
-    const students = countStudents(process.argv[2]);
-  }
-});
-
-app.listen(PORT, HOST);
+module.exports = countStudents;
