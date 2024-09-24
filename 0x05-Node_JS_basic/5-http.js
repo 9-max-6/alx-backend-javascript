@@ -4,10 +4,10 @@ const fs = require('fs');
 
 function getMessage(subjectName) {
   const template = `Number of students in ${subjectName[0]}: ${subjectName[1].length}. `;
-  const studentNames = new Array();
+  const studentNames = [];
 
-  for (const index in subjectName[1]) {
-    const curr = subjectName[1][index].firstname;
+  for (const entry of subjectName[1]) {
+    const curr = entry.firstname;
     studentNames.push(curr);
   }
   return template.concat(`List: ${studentNames.join(', ')}`);
@@ -46,8 +46,6 @@ const countStudents = (dataPath) =>
     });
   });
 
-module.exports = countStudents;
-
 const app = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
@@ -58,7 +56,7 @@ const app = http.createServer((req, res) => {
 
     resp
       .then((value) => {
-        const messages = new Array();
+        const messages = [];
         const pre = 'This is the list of our students';
 
         const totalStudents = Object.values(value).reduce(
