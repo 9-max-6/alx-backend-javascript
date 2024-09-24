@@ -78,7 +78,7 @@ const app = http.createServer((req, res) => {
       })
       .catch(() => {
         res.statusCode = 403;
-        res.end('Cannot load the database');
+        res.end('This is the list of our students\nCannot load the database');
       });
   }
 });
